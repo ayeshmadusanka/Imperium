@@ -24,26 +24,6 @@ class _RegisterPageState extends State<RegisterPage> {
   // Current selected role
   String selectedRole = "Captain";
 
-  // Function to get the appropriate profile icon based on the role
-  IconData getRoleIcon(String role) {
-    switch (role) {
-      case "Captain":
-        return Icons.anchor; // Icon for Captain
-      case "Deck Crew":
-        return Icons.deck; // Icon for Deck Crew
-      case "Engineer":
-        return Icons.engineering; // Icon for Engineer
-      case "Cook":
-        return Icons.restaurant; // Icon for Cook
-      case "Medic":
-        return Icons.local_hospital; // Icon for Medic
-      case "Navigator":
-        return Icons.navigation; // Icon for Navigator
-      default:
-        return Icons.help_outline; // Default icon for unknown roles
-    }
-  }
-
   // Controllers for text fields
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -64,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             // Top Section with padding
             Padding(
-              padding: const EdgeInsets.only(top: 60.0), // Adjust top padding as needed
+              padding: const EdgeInsets.only(top: 0.0), // Adjust top padding as needed
               child: Stack(
                 children: [
                   Container(
@@ -83,53 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Circle Avatar with fade-in-up animation
-                          CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.blue.shade900,
-                            child: Icon(
-                              getRoleIcon(selectedRole), // Get the icon based on the selected role
-                              size: 50,
-                              color: Colors.white,
-                            ),
-                          ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, -50), end: Offset(0, 0), duration: 800.ms),
-                          const SizedBox(height: 10),
-
-                          // Dropdown for role selection with fade-in-up animation
-                          IntrinsicWidth(
-                            child: DropdownButtonHideUnderline(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: screenWidth * 0.1, // Adjust padding based on screen width
-                                ),
-                                child: DropdownButton<String>(
-                                  value: selectedRole,
-                                  dropdownColor: Colors.white,
-                                  iconEnabledColor: Colors.blue.shade900,
-                                  isExpanded: true, // Dynamically adjust to text length
-                                  items: roles
-                                      .map((role) => DropdownMenuItem(
-                                    value: role,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      role,
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.blue.shade900,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ))
-                                      .toList(),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedRole = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ),
-                          ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                          // Removed profile icon and role dropdown section
                         ],
                       ),
                     ),
@@ -195,6 +129,34 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderSide: BorderSide.none,
                       ),
                     ),
+                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  const SizedBox(height: 15),
+
+                  // Role Field as Dropdown
+                  DropdownButtonFormField<String>(
+                    value: selectedRole,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        selectedRole = newValue!;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Select Role",
+                      filled: true,
+                      fillColor: Colors.blue.shade100,
+                      prefixIcon: Icon(Icons.people, color: Colors.blue.shade900),
+                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    items: roles.map<DropdownMenuItem<String>>((String role) {
+                      return DropdownMenuItem<String>(
+                        value: role,
+                        child: Text(role),
+                      );
+                    }).toList(),
                   ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
                   const SizedBox(height: 15),
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'profile.dart';
+import 'jobs.dart';
+import 'courses.dart';// Import the JobListPage
 
 void main() {
   runApp(MyApp());
@@ -48,7 +50,11 @@ class _HomePageState extends State<HomePage> {
               icon: Icons.work,
               title: 'Job Finder',
               onTap: () {
-                // Handle navigation to Job Finder
+                // Navigate to the JobListPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => JobListPage()), // Navigate to JobListPage
+                );
               },
             ),
             SizedBox(height: 24),
@@ -56,7 +62,10 @@ class _HomePageState extends State<HomePage> {
               icon: Icons.school,
               title: 'Marie Training Coordinator',
               onTap: () {
-                // Handle navigation to Marie Training Coordinator
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CourseListPage()), // Navigate to JobListPage
+                );
               },
             ),
             SizedBox(height: 24),
@@ -77,6 +86,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue.shade900, // Set the background color of the bottom navigation bar to blue.shade900
         type: BottomNavigationBarType.fixed, // Ensure fixed type for consistent background color
         onTap: (index) {
+
           setState(() {
             _currentIndex = index;
           });
@@ -105,12 +115,8 @@ class _HomePageState extends State<HomePage> {
             label: 'Settings',
           ),
         ],
+
       ),
-
-
-
-
-
     );
   }
 
