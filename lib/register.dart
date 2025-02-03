@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'login.dart';
 import 'login_without_top.dart';
+import 'register_verification.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -103,6 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                     ),
                   )
                       .animate()
@@ -123,6 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                     ),
                   )
                       .animate()
@@ -147,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                     ),
                     items: roles.map<DropdownMenuItem<String>>((String role) {
                       return DropdownMenuItem<String>(
@@ -174,6 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                     ),
                   )
                       .animate()
@@ -206,6 +211,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                     ),
                   )
                       .animate()
@@ -224,7 +230,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     onPressed: () {
-                      // Handle registration functionality
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterVerificationPage()),
+                      );
                     },
                     child: const Text(
                       "Register",

@@ -13,6 +13,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white, // Set the default background color to white
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: Colors.blue.shade100, // Text highlight color
+          cursorColor: Colors.blue.shade900, // Blinker color
+          selectionHandleColor: Colors.blue.shade900, // Water drop color
+        ),
+
       ),
       home: const LoginNoTop(),
     );

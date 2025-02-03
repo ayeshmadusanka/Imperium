@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'job_application.dart';
 
 class JobDetailsPage extends StatelessWidget {
   const JobDetailsPage({Key? key}) : super(key: key);
@@ -87,9 +88,10 @@ class JobDetailsPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 25),
               child: ElevatedButton(
                 onPressed: () {
-                  // Add your action for the apply button here
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Application Submitted!")),
+                  // Navigate to the JobApplicationPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => JobApplicationPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -107,7 +109,8 @@ class JobDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            )
+
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'register.dart';
 import 'home.dart';
+import 'forgot_password.dart';
 
 class LoginNoTop extends StatefulWidget {
   const LoginNoTop({Key? key}) : super(key: key);
@@ -179,25 +180,39 @@ class _LoginNoTopState extends State<LoginNoTop> {
                   // Forgot Password Section with fade-in-up animation
                   Center(
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
-                          "Forgot Password",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.blueGrey,
+                        // GestureDetector for "Forgot Password"
+                        GestureDetector(
+                          onTap: () {
+                            // Navigate to ForgotPasswordPage when tapped
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                            );
+                          },
+                          child: const Text(
+                            "Forgot Password",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.blueGrey,
+                              decoration: TextDecoration.none, // Add underline for emphasis
+                            ),
                           ),
                         ),
                         const SizedBox(height: 15),
+
+                        // GestureDetector for "Sign Up"
                         GestureDetector(
                           onTap: () {
-                            // Navigate to the RegisterPage when tapped
+                            // Navigate to RegisterPage when tapped
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => RegisterPage()),
                             );
                           },
                           child: const Text(
-                            "Don't have an account?, sign up",
+                            "Don't have an account? Sign up",
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.blueGrey,
