@@ -26,69 +26,57 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // Controllers for text fields
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   bool _isPasswordVisible = false; // To toggle password visibility
-  bool _isConfirmPasswordVisible = false; // To toggle confirm password visibility
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width to adjust padding dynamically
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.white, // Set background color to white
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Top Section with padding
+            // Top Section with Logo
             Padding(
-              padding: const EdgeInsets.only(top: 0.0), // Adjust top padding as needed
-              child: Stack(
+              padding: const EdgeInsets.only(top: 70.0),
+              child: Column(
                 children: [
-                  Container(
-                    height: 160,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.white, Colors.white],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Removed profile icon and role dropdown section
-                        ],
-                      ),
-                    ),
-                  ),
+                  Image.asset(
+                    "assets/logo.png",
+                    height: 55,
+                    width: 240,
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: -50, end: 0, duration: 800.ms),
                 ],
               ),
             ),
 
-            // Register Section with fade-in-up animation
+            // Register Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 00),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Fade-in-up for Register text
                   Text(
                     "Register",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue.shade900, // Use color directly here
+                      color: Colors.blue.shade900,
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 5),
+
                   const Text(
                     "Create an account to continue",
                     textAlign: TextAlign.center,
@@ -96,10 +84,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 14,
                       color: Colors.blueGrey,
                     ),
-                  ),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 30),
 
-                  // Username Field with fade-in-up animation
+                  // First Name
                   TextField(
                     controller: usernameController,
                     decoration: InputDecoration(
@@ -107,32 +99,39 @@ class _RegisterPageState extends State<RegisterPage> {
                       filled: true,
                       fillColor: Colors.blue.shade100,
                       prefixIcon: Icon(Icons.person, color: Colors.blue.shade900),
-                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding to reduce height
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 15),
 
+                  // Last Name
                   TextField(
-                    controller: usernameController,
+                    controller: lastNameController,
                     decoration: InputDecoration(
                       hintText: "Last Name",
                       filled: true,
                       fillColor: Colors.blue.shade100,
                       prefixIcon: Icon(Icons.person, color: Colors.blue.shade900),
-                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding to reduce height
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 15),
 
-                  // Role Field as Dropdown
+                  // Role Dropdown
                   DropdownButtonFormField<String>(
                     value: selectedRole,
                     onChanged: (String? newValue) {
@@ -141,11 +140,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       });
                     },
                     decoration: InputDecoration(
-                      hintText: "Select Role",
                       filled: true,
                       fillColor: Colors.blue.shade100,
                       prefixIcon: Icon(Icons.people, color: Colors.blue.shade900),
-                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
@@ -157,10 +154,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(role),
                       );
                     }).toList(),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 15),
 
-                  // Phone Number Field with fade-in-up animation
+                  // Phone Number
                   TextField(
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
@@ -169,16 +170,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       filled: true,
                       fillColor: Colors.blue.shade100,
                       prefixIcon: Icon(Icons.phone, color: Colors.blue.shade900),
-                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding to reduce height
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 15),
 
-                  // Password Field with fade-in-up animation
+                  // Password
                   TextField(
                     controller: passwordController,
                     obscureText: !_isPasswordVisible,
@@ -189,9 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       prefixIcon: Icon(Icons.lock, color: Colors.blue.shade900),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _isPasswordVisible
-                              ? Icons.visibility
-                              : Icons.visibility_off,
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                           color: Colors.blue.shade900,
                         ),
                         onPressed: () {
@@ -200,61 +202,56 @@ class _RegisterPageState extends State<RegisterPage> {
                           });
                         },
                       ),
-                      contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16), // Adjust padding to reduce height
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
                       ),
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 20),
 
-                  // Register Button with fade-in-up animation
+                  // Register Button
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.shade900,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 14), // Adjust padding to match field height
+                      padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     onPressed: () {
                       // Handle registration functionality
                     },
                     child: const Text(
                       "Register",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
+
                   const SizedBox(height: 15),
 
-                  // Already have an account section with fade-in-up animation
+                  // Already have an account? Log in
                   Center(
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // Navigate to LoginPage when tapped
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginNoTop()),
-                            );
-                          },
-                          child: const Text(
-                            "Already have an account? Log in",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginNoTop()));
+                      },
+                      child: const Text(
+                        "Already have an account? Log in",
+                        style: TextStyle(fontSize: 14, color: Colors.blueGrey),
+                      ),
                     ),
-                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
+                  )
+                      .animate()
+                      .fadeIn(duration: 800.ms)
+                      .moveY(begin: 50, end: 0, duration: 800.ms),
                 ],
               ),
             ),

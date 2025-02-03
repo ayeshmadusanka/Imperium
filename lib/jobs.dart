@@ -1,4 +1,6 @@
+// job_list_page.dart
 import 'package:flutter/material.dart';
+import 'job_details.dart'; // Import JobDetailPage
 
 class JobListPage extends StatefulWidget {
   const JobListPage({Key? key}) : super(key: key);
@@ -175,41 +177,54 @@ class JobTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      color: Colors.white, // Set the background color to white
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(16.0),
-        title: Text(
-          rank,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+    return GestureDetector(
+      onTap: () {
+        // Navigate to JobDetailPage when the tile is tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => JobDetailsPage(
+
+            ),
           ),
+        );
+      },
+      child: Card(
+        margin: const EdgeInsets.only(bottom: 16.0),
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
         ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Vessel Type: $vesselType',
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
-              ),
+        color: Colors.white, // Set the background color to white
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(16.0),
+          title: Text(
+            rank,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
-            Text(
-              'Date of Joining: $joiningDate',
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Vessel Type: $vesselType',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black87,
+                ),
               ),
-            ),
-          ],
+              Text(
+                'Date of Joining: $joiningDate',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

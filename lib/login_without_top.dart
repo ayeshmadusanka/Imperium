@@ -61,14 +61,16 @@ class _LoginNoTopState extends State<LoginNoTop> {
         child: Column(
           children: [
             // Ship Icon at the top
+            // Ship Icon at the top (Replaced with logo.png)
             Padding(
               padding: const EdgeInsets.only(top: 100.0),
-              child: Icon(
-                Icons.directions_boat, // Ship Icon
-                size: 80,
-                color: Colors.blue.shade900,
-              ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, -50), end: Offset(0, 0), duration: 800.ms), // Add fade-in-up animation here
+              child: Image.asset(
+                "assets/logo.png", // Ensure logo.png is in the assets folder
+                width: 240,
+                height: 60,
+              ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, -50), end: Offset(0, 0), duration: 800.ms),
             ),
+
 
             // Login Section with fade-in-up animation
             Padding(
@@ -94,7 +96,7 @@ class _LoginNoTopState extends State<LoginNoTop> {
                       fontSize: 14,
                       color: Colors.blueGrey,
                     ),
-                  ),
+                  ).animate().fadeIn(duration: 800.ms).move(begin: Offset(0, 50), end: Offset(0, 0), duration: 800.ms),
                   const SizedBox(height: 30),
 
                   // Name Field with fade-in-up animation (Phone Number)

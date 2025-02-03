@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'course_details.dart';
 
 class CourseListPage extends StatefulWidget {
   const CourseListPage({Key? key}) : super(key: key);
@@ -225,6 +226,14 @@ class CourseTile extends StatelessWidget {
             ),
           ],
         ),
+        onTap: () {
+          // Navigate to CourseDetailsPage
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CourseDetailsPage(),),
+          );
+        },
       ),
     );
   }
