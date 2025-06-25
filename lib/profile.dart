@@ -1,177 +1,259 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'home.dart';
+// Removed unused 'package:intl/intl.dart' import as it's not directly used in this file
+import 'personnel_details.dart'; // Corrected import path for PersonnelInformationPage
+import 'family_details.dart'; // Import the FamilyDetailsPage
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
+      title: 'Profile Completion',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: 'Inter', // Assuming 'Inter' font is available or default system font
+      ),
+      home: const ProfilePage(), // Changed from ProfileCompletionPage
     );
   }
 }
 
+class ProfilePage extends StatelessWidget { // Changed class name
+  const ProfilePage({super.key}); // Changed constructor name
 
-
-class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade900,
-        title: Text(
-          'Profile',
+        backgroundColor: Colors.blue.shade900, // Changed background color
+        elevation: 0,
+        title: const Text(
+          'Profile', // Changed title text
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.white, // Changed title color
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
           ),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+        leading: IconButton( // Added back button
+          icon: const Icon(Icons.arrow_back, color: Colors.white), // Set back button color to white
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
+            // Implement navigation back functionality here
+            print('Back button pressed');
           },
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 20),
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/profile_picture.png'),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Jonathan Patterson',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue.shade900,
+          children: <Widget>[
+            // Profile Photo Section
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      const CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Colors.grey,
+                        child: Icon(
+                          Icons.person,
+                          size: 60,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 2,
+                            ),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(4.0),
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Profile Photo',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  const Text(
+                    'Click camera icon to upload',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 5),
-            Text(
-              'Captain',
-              style: TextStyle(
-                color: Colors.blue.shade900,
-                fontSize: 14,
-              ),
+            // Removed the first Divider here
+
+            // List of Profile Sections
+            ProfileSectionTile(
+              icon: Icons.person_outline,
+              title: 'Personnel Details',
+              subtitle: 'Basic personal information',
+              isCompleted: false,
+              onTap: () {
+                // Navigate to PersonnelInformationPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PersonnelInformationPage()),
+                );
+              },
             ),
-            SizedBox(height: 5),
-            Text(
-              'Generate CV',
-              style: TextStyle(
-                color: Colors.blue.shade900,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+            // Removed Divider between list items
+            ProfileSectionTile(
+              icon: Icons.group_outlined,
+              title: 'Family Details',
+              subtitle: 'Spouse and family information',
+              isCompleted: false,
+              onTap: () {
+                // Navigate to FamilyDetailsPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FamilyDetailsPage()),
+                );
+              },
             ),
-            Divider(thickness: 1, color: Colors.white),
-            _buildSectionTitle('General Settings'),
-            _buildListTile(
-              icon: Icons.key,
-              title: 'Change Password',
-              trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue.shade900),
+            // Removed Divider between list items
+            ProfileSectionTile(
+              icon: Icons.phone_outlined,
+              title: 'Emergency Contact',
+              subtitle: 'Next of kin details',
+              isCompleted: false,
             ),
-            _buildListTile(
-              icon: Icons.logout,
-              title: 'Logout',
-              trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue.shade900),
+            // Removed Divider between list items
+            ProfileSectionTile(
+              icon: Icons.school_outlined,
+              title: 'Academic Qualification',
+              subtitle: 'Pre-sea training details',
+              isCompleted: false,
             ),
-            Divider(thickness: 1, color: Colors.white),
-            _buildSectionTitle('General Information'),
-            _buildListTile(
-              icon: Icons.upload_file,
-              title: 'CDC (Upload Medical Report)',
-              trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue.shade900),
+            // Removed Divider between list items
+            ProfileSectionTile(
+              icon: Icons.description_outlined,
+              title: 'Travel Documents',
+              subtitle: 'Identity and travel documents',
+              isCompleted: false,
             ),
-            _buildListTile(
-              icon: Icons.person,
-              title: 'Last Name*',
-              trailing: Icon(Icons.edit, color: Colors.blue.shade900),
+            // Removed Divider between list items
+            ProfileSectionTile(
+              icon: Icons.receipt_long_outlined,
+              title: 'Certifications',
+              subtitle: 'STCW & value added certificates',
+              isCompleted: false,
             ),
-            _buildListTile(
-              icon: Icons.person,
-              title: 'First Name*',
-              trailing: Icon(Icons.edit, color: Colors.blue.shade900),
+            // Removed Divider between list items
+            ProfileSectionTile(
+              icon: Icons.info_outline,
+              title: 'Additional Info',
+              subtitle: 'Experience and references',
+              isCompleted: false,
             ),
-            _buildListTile(
-              icon: Icons.phone,
-              title: 'Mobile 1*',
-              trailing: Icon(Icons.edit, color: Colors.blue.shade900),
-            ),
-            _buildListTile(
-              icon: Icons.settings_phone_outlined,
-              title: 'Mobile 2 (WhatsApp)',
-              trailing: Icon(Icons.edit, color: Colors.blue.shade900),
-            ),
-            _buildListTile(
-              icon: Icons.phone_in_talk,
-              title: 'Mobile 3 / Land Line',
-              trailing: Icon(Icons.edit, color: Colors.blue.shade900),
-            ),
-            _buildListTile(
-              icon: Icons.upload_file,
-              title: 'Certificate (Upload)',
-              trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue.shade900),
-            ),
+            const SizedBox(height: 20), // Padding at the bottom
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildSectionTitle(String title) {
-    return Container(
-      width: double.infinity,
-      color: Colors.blue.shade900,
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
+class ProfileSectionTile extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final bool isCompleted;
+  final VoidCallback? onTap; // Added onTap callback
 
-  Widget _buildListTile({
-    required IconData icon,
-    required String title,
-    String? subtitle,
-    Widget? trailing,
-  }) {
-    return ListTile(
-      leading: Icon(icon, color: Colors.blue.shade900),
-      title: Text(
-        title,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.blue.shade900,
+  const ProfileSectionTile({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.isCompleted,
+    this.onTap, // Initialize onTap
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container( // Replaced Card with Container
+      margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 0.0), // Reduced vertical padding
+        leading: Container(
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: Colors.blue.withOpacity(0.1), // Light blue background for icon
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(
+            icon,
+            color: Colors.blue,
+            size: 24,
+          ),
         ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 15,
+            color: Colors.black87,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.grey,
+          ),
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Dot indicator for completion status
+            Icon(
+              Icons.circle,
+              size: 8,
+              color: isCompleted ? Colors.green : Colors.blue.shade900, // Green if completed, changed grey to blue.shade900
+            ),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: Colors.blue, // Changed arrow color to blue
+            ),
+          ],
+        ),
+        onTap: onTap, // Used the provided onTap callback
       ),
-      subtitle: subtitle != null
-          ? Text(
-        subtitle,
-        style: TextStyle(color: Colors.blue.shade900),
-      )
-          : null,
-      trailing: trailing,
     );
   }
 }

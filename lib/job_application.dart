@@ -173,12 +173,12 @@ class _JobApplicationPageState extends State<JobApplicationPage> {
                 onPressed: _submitApplication,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade900,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 100),
+                  padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 100),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 ),
                 child: const Text(
                   "Submit Application",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: TextStyle(fontSize: 14, color: Colors.white),
                 ),
               ),
             ],

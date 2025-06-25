@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_without_top.dart';
 import 'login.dart';
+import 'onboarding.dart';
 
 void main() => runApp(const MyApp());
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
 
       ),
-      home: const LoginNoTop(),
+      home: const OnboardingScreen(),
     );
   }
 }
