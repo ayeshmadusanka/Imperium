@@ -99,19 +99,21 @@ class ProfilePage extends StatelessWidget { // Changed class name
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Profile Photo',
+                    'Ayesh Madusanka', // Changed text to Ayesh Madusanka
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'Click camera icon to upload',
+                  const SizedBox(height: 8), // Reduced from 8 to 4
+                  // Replaced "Click camera icon to upload" with "Generate CV"
+                  Text(
+                    'Generate CV',
                     style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
+                      fontSize: 18, // Increased font size to 14
+                      fontWeight: FontWeight.bold, // Make it bold
+                      color: Colors.blue.shade900, // Set color to blue.shade900
                     ),
                   ),
                 ],
