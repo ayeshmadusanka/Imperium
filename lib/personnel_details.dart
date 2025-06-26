@@ -56,13 +56,16 @@ class _PersonnelInformationPageState extends State<PersonnelInformationPage> { /
 
   @override
   Widget build(BuildContext context) {
+    // Define a consistent width for the button, similar to the Academic Qualification page
+    final double buttonWidth = MediaQuery.of(context).size.width * 0.7; // Example: 70% of screen width
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900, // Changed app bar background color
         elevation: 0,
-        title: Text(
-          'Basic Information', // Title for the form
-          style: const TextStyle( // Added const for TextStyle
+        title: const Text( // Title for the form
+          'Basic Information', // Added const for TextStyle
+          style: TextStyle(
             color: Colors.white, // Changed app bar title color
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -77,7 +80,7 @@ class _PersonnelInformationPageState extends State<PersonnelInformationPage> { /
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0), // Reverted padding to 16.0 for consistency with previous versions if it was 20.0
+        padding: const EdgeInsets.all(32.0), // Reverted padding to 16.0 for consistency with previous versions if it was 20.0
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -253,25 +256,28 @@ class _PersonnelInformationPageState extends State<PersonnelInformationPage> { /
 
             // Save Changes Button
             Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Implement save changes logic here
-                  print('Save Changes button pressed!');
-                  // You can collect data from controllers and dropdowns here
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade900, // Button background color
-                  foregroundColor: Colors.white, // Button text color
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8), // Rounded corners for button
+              child: SizedBox(
+                width: buttonWidth, // Apply the consistent width
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Implement save changes logic here
+                    print('Save Changes button pressed!');
+                    // You can collect data from controllers and dropdowns here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade900, // Button background color
+                    foregroundColor: Colors.white, // Button text color
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Match padding with other button
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Rounded corners for button
+                    ),
                   ),
-                ),
-                child: const Text(
-                  'Save Changes',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  child: const Text(
+                    'Save Changes',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

@@ -70,6 +70,9 @@ class _FamilyDetailsPageState extends State<FamilyDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Define a consistent width for the button, similar to the Personnel Information page
+    final double buttonWidth = MediaQuery.of(context).size.width * 0.7; // Example: 70% of screen width
+
     return Scaffold(
       backgroundColor: Colors.white, // Changed background to white
       appBar: AppBar(
@@ -93,12 +96,19 @@ class _FamilyDetailsPageState extends State<FamilyDetailsPage> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(32.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Marital Information Section
-
+            const Text(
+              'Marital Information',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             const SizedBox(height: 16),
             _buildLabeledDropdown(
               label: 'Marital Status *',
@@ -193,7 +203,37 @@ class _FamilyDetailsPageState extends State<FamilyDetailsPage> {
               hintText: "Mother's full name",
               controller: _motherFullNameController,
             ),
-            const SizedBox(height: 20), // Padding at the bottom
+            const SizedBox(height: 40), // Padding at the bottom
+
+            // Save Changes Button
+            Center(
+              child: SizedBox(
+                width: buttonWidth, // Apply the consistent width
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Implement save changes logic here
+                    print('Save Changes button pressed!');
+                    // You can collect data from controllers and dropdowns here
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade900, // Button background color
+                    foregroundColor: Colors.white, // Button text color
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Match padding with other button
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Rounded corners for button
+                    ),
+                  ),
+                  child: const Text(
+                    'Save Changes',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20), // Padding after the button
           ],
         ),
       ),

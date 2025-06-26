@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 // Removed unused 'package:intl/intl.dart' import as it's not directly used in this file
 import 'personnel_details.dart'; // Corrected import path for PersonnelInformationPage
 import 'family_details.dart'; // Import the FamilyDetailsPage
+import 'academic_qualifications.dart'; // Import the AcademicQualificationPage
+import 'travel_document.dart'; // Import the TravelDocumentsPage
+import 'certifications.dart'; // Import the CertificatesPage
+import 'emergency_contact.dart'; // Import the EmergencyContactPage
 
 void main() {
   runApp(const MyApp());
@@ -149,6 +153,13 @@ class ProfilePage extends StatelessWidget { // Changed class name
               title: 'Emergency Contact',
               subtitle: 'Next of kin details',
               isCompleted: false,
+              onTap: () {
+                // Navigate to EmergencyContactPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EmergencyContactPage()),
+                );
+              },
             ),
             // Removed Divider between list items
             ProfileSectionTile(
@@ -156,6 +167,13 @@ class ProfilePage extends StatelessWidget { // Changed class name
               title: 'Academic Qualification',
               subtitle: 'Pre-sea training details',
               isCompleted: false,
+              onTap: () {
+                // Navigate to AcademicQualificationPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AcademicQualificationPage()),
+                );
+              },
             ),
             // Removed Divider between list items
             ProfileSectionTile(
@@ -163,6 +181,13 @@ class ProfilePage extends StatelessWidget { // Changed class name
               title: 'Travel Documents',
               subtitle: 'Identity and travel documents',
               isCompleted: false,
+              onTap: () {
+                // Navigate to TravelDocumentsPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TravelDocumentsPage()),
+                );
+              },
             ),
             // Removed Divider between list items
             ProfileSectionTile(
@@ -170,6 +195,13 @@ class ProfilePage extends StatelessWidget { // Changed class name
               title: 'Certifications',
               subtitle: 'STCW & value added certificates',
               isCompleted: false,
+              onTap: () {
+                // Navigate to CertificatesPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CertificatesPage()),
+                );
+              },
             ),
             // Removed Divider between list items
             ProfileSectionTile(
